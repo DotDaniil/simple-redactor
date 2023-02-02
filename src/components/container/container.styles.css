@@ -1,4 +1,7 @@
 .simple-redactor {
+    display: flex;
+
+    flex-direction: column;
 
     width: 100vw;
     height: 100vh;
@@ -15,8 +18,10 @@
 .heading {
     position: relative;
 
-    top: 10vh;
-    left: calc(50vw - 114px);
+    margin: 30px;
+    text-align: center;
+    /*top: 10vh;*/
+    /*left: calc(50vw - 114px);*/
 
     color: black;
 }

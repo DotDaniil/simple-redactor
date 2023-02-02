@@ -1,63 +1,79 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Props } from './sidebar-object.types';
 import './sidebar-object.css';
-import returnWorkareaObject from "./return-workarea-object/return-workarea-object";
-import {createPortal, render} from "react-dom";
-import {createRoot} from "react-dom/client";
+import useDefinedObject from "../../use-defined-object";
 
-const SidebarObject: React.FC<Props> = ({ innerText, ableUploadImage }) => {
-    const [everTouched, setEverTouched] = useState(false);
-    // const [isDragged, setIsDragged] = useState(false);
+const SidebarObject: React.FC<Props> = ({ innerText, ableUploadImage, setNextElement, setDropped }) => {
+    // const [nextElement, setNextElement] = useState('');
+    const [mousePos, setMousePos] = useState({x: 0, y: 0});
 
     const ref = useRef<HTMLDivElement>(null)
     const { current } = ref;
 
-    // const [defaultY, setDefaultY] = useState<number | undefined>(undefined);
-    // const [defaultX, setDefaultX] = useState<number | undefined>(undefined);
-    //
-    // useEffect(() => {
-    //     if (everTouched) {
-    //         setDefaultY(current?.offsetTop);
-    //         setDefaultX(current?.offsetLeft);
-    //     }
-    //
-    // }, [everTouched])
-    // console.log(defaultX, defaultY)
-    //
-    // const [positionY, setPositionY] = useState(defaultY);
-    // const [positionX, setPositionX] = useState(defaultX);
-    //
-    //
-    // useEffect(() => {
-    //     if (everTouched && current?.offsetTop && current.offsetLeft) {
-    //         setPositionY(current?.offsetTop);
-    //         setPositionX(current?.offsetLeft);
-    //     }
-    //
-    // }, [everTouched, current?.offsetTop, current?.offsetLeft])
-    //
-    // const handleDrag = useCallback(() => {
-    //     setEverTouched(true);
-    //     // setPositionY(current?.offsetTop);
-    //     // setPositionX(current?.offsetLeft);
-    //     console.log('drag');
-    //
-    // },[])
-0
-    const handleDrop = useCallback(() => {
-        const workarea = document.querySelector('.workarea')
-        const child = returnWorkareaObject(ableUploadImage, 200, 200);
-        console.log('drop');
+    useEffect(() => {
+        const handleMouseMove = (event: MouseEvent) => {
+            setMousePos({ x: event.clientX, y: event.clientY });
+        };
 
-    },[current]);
+        window.addEventListener('mousemove', handleMouseMove);
+        return () => {
+            window.removeEventListener(
+                'mousemove',
+                handleMouseMove
+            );
+        };
+
+    }, []);
+
+    const workarea = document.querySelector('.workarea');
+    const attr = document.createAttribute('nextElement');
+
+    // useEffect(() => {
+    //     attr.value = (nextElement)
+    //     workarea?.attributes.setNamedItem(attr);
+    // }, [nextElement])
+
+    const handleDrag = useCallback(() => {
+        setNextElement(ableUploadImage ? 'image': 'textarea')
+    },[])
+
+    // useEffect(() => {
+    //     // setDefinedObject(nextElement);
+    //     setDropped(false)
+    // }, [nextElement])
+
+
+
+    const handleDrop = useCallback((event: React.DragEvent<HTMLDivElement>) => {
+        const workareaX = workarea?.getBoundingClientRect().x;
+        const workareaY = workarea?.getBoundingClientRect().y;
+
+        const border = 6;
+
+        const xCondition = event.clientX >= (workareaX  ?? 0) && event.clientX <= (workarea?.clientWidth ?? 0) + (workareaX ?? 0) + border;
+        const yCondition = event.clientY >= (workareaY  ?? 0) && event.clientY <= (workarea?.clientHeight ?? 0) + (workareaY ?? 0) + border;
+
+        if (xCondition && yCondition) {
+            console.log('DROP IN ZONE!')
+            // console.log(nextElement)
+            // setNextElement(ableUploadImage ? 'image': 'textarea')
+            // setDefinedObject(nextElement);
+            setDropped(true);
+            // setNextElement('');
+            // TODO: handle element creation
+        }
+
+
+
+    },[current, mousePos.x, mousePos.y]);
 
     return (
         <div
             draggable
             className="sidebar-object"
-             // onDragStart={handleDrag}
-             onDragEnd={handleDrop}
-             ref={ref}>
+            onDragStart={handleDrag}
+            onDragEnd={event => handleDrop(event)}
+            ref={ref}>
             <h2 className="sidebar-object-text">{innerText}</h2>
         </div>
     );

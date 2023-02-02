@@ -1,25 +1,16 @@
 import React, {useEffect, useState} from 'react';
+import './sidebar.styles.css';
+import SidebarObject from "./sidebar-object/sidebar-object";
+import { Props } from "./sidebar.types";
 
-export const Sidebar = () => {
-    const [mousePos, setMousePos] = useState({});
+export const Sidebar: React.FC<Props> = ({ setNextElement, setDropped }) => {
 
-    useEffect(() => {
-        const handleMouseMove = (event: MouseEvent) => {
-            setMousePos({ x: event.clientX, y: event.clientY });
-        };
-
-        window.addEventListener('mousemove', handleMouseMove);
-
-        return () => {
-            window.removeEventListener(
-                'mousemove',
-                handleMouseMove
-            );
-        };
-    }, []);
+    // console.log(mousePos);
     return (
-        <div>
-            <div className="workarea"></div>
+        <div className="sidebar">
+            <h2>Sidebar</h2>
+            <SidebarObject innerText={'Text'} ableUploadImage={false} setNextElement={setNextElement} setDropped={setDropped}/>
+            <SidebarObject innerText={'Image'} ableUploadImage setNextElement={setNextElement} setDropped={setDropped}/>
         </div>
     );
 };
