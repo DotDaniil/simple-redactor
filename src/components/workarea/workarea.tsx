@@ -27,6 +27,7 @@ export const Workarea: React.FC<Props> = ({nextElement, dropped}) => {
 
     return (
         <div className='workarea'>
+            <h2 className='workarea-heading'>Work Area</h2>
             <Controller elementType={nextElement} dropped={dropped}/>
         </div>
     );
