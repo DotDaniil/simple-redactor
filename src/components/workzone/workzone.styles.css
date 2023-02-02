@@ -1,0 +1,22 @@
+.workzone {
+    display: flex;
+
+    flex-direction: row;
+
+    justify-content: center;
+
+    position: relative;
+
+    width: 100%;
+
+    margin: calc(10% - 17px) 0;
+    /*height: 100%;*/
+}
+
+    /*@media only screen and (max-width: 768px) {*/
+    /*    .workzone {*/
+    /*        flex-direction: column;*/
+    /*    }*/
+
+    /*}*/
+
