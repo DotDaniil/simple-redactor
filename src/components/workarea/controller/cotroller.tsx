@@ -36,7 +36,7 @@ export const Controller: React.FC<Props> = ({ elementType, dropped }) => {
         if (appState.length > 16) {
             setAppState((prevState) => [...prevState.slice(0, 16)])
         }
-    }, [appState, isTablet])
+    }, [appState, isTablet, isMobile])
 
     return (
         <div className='controller'>
