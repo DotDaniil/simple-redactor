@@ -8,6 +8,8 @@
     position: relative;
 
     width: 100%;
+
+    margin: calc(10% - 17px) 0;
     /*height: 100%;*/
 }
 
