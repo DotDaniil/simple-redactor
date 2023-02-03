@@ -1,6 +1,7 @@
 import React, {useCallback, useEffect, useMemo, useState} from 'react';
 import { Props } from "./controller.types";
 import Textarea from "../textarea/textarea";
+import Image from  "../image/image";
 import './controller.styles.css';
 import useWindowDimensions from "../../../utils/useWindowDimension";
 
@@ -43,7 +44,7 @@ export const Controller: React.FC<Props> = ({ elementType, dropped }) => {
             {dividedState.map((el, idx) => (
                 <div className='column' key={idx}>
                     {el.map(el_inside => (
-                    el_inside === 'textarea' ? <Textarea /> : el_inside))}
+                    el_inside === 'textarea' ? <Textarea /> : <Image />))}
                 </div>))}
         </div>
     );
