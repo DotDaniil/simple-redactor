@@ -1,10 +1,8 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Props } from './sidebar-object.types';
 import './sidebar-object.css';
-import useDefinedObject from "../../use-defined-object";
 
-const SidebarObject: React.FC<Props> = ({ innerText, ableUploadImage, setNextElement, setDropped }) => {
-    // const [nextElement, setNextElement] = useState('');
+export const SidebarObject: React.FC<Props> = ({ innerText, ableUploadImage, setNextElement, setDropped }) => {
     const [mousePos, setMousePos] = useState({x: 0, y: 0});
 
     const ref = useRef<HTMLDivElement>(null)
@@ -26,23 +24,9 @@ const SidebarObject: React.FC<Props> = ({ innerText, ableUploadImage, setNextEle
     }, []);
 
     const workarea = document.querySelector('.workarea');
-    const attr = document.createAttribute('nextElement');
-
-    // useEffect(() => {
-    //     attr.value = (nextElement)
-    //     workarea?.attributes.setNamedItem(attr);
-    // }, [nextElement])
-
     const handleDrag = useCallback(() => {
         setNextElement(ableUploadImage ? 'image': 'textarea')
     },[])
-
-    // useEffect(() => {
-    //     // setDefinedObject(nextElement);
-    //     setDropped(false)
-    // }, [nextElement])
-
-
 
     const handleDrop = useCallback((event: React.DragEvent<HTMLDivElement>) => {
         const workareaX = workarea?.getBoundingClientRect().x;
@@ -55,12 +39,7 @@ const SidebarObject: React.FC<Props> = ({ innerText, ableUploadImage, setNextEle
 
         if (xCondition && yCondition) {
             console.log('DROP IN ZONE!')
-            // console.log(nextElement)
-            // setNextElement(ableUploadImage ? 'image': 'textarea')
-            // setDefinedObject(nextElement);
             setDropped(true);
-            // setNextElement('');
-            // TODO: handle element creation
         }
 
 
@@ -78,5 +57,3 @@ const SidebarObject: React.FC<Props> = ({ innerText, ableUploadImage, setNextEle
         </div>
     );
 };
-
-export default SidebarObject;

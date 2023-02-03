@@ -1,12 +1,8 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import './image.styles.css';
+import { HTMLInputEvent } from "./image.types";
 
-
-interface HTMLInputEvent extends React.MouseEvent<HTMLInputElement, MouseEvent> {
-    target: HTMLInputElement;
-}
-
-const Image = () => {
+export const Image = () => {
 
     const [image, setImage] = useState<File | null>(null);
 
@@ -40,9 +36,9 @@ const Image = () => {
 
     return (
         <div className="image-container">
-            {preview ? <img alt="img" className="image" src={preview as string || undefined}/> : <input className="image-input" ref={fileInputRef} type="file" onChange={handleClick} />}
+            {preview ?
+                <img alt="img" className="image" src={preview as string || undefined}/> :
+                <input className="image-input" ref={fileInputRef} type="file" onChange={handleClick} />}
         </div>
     );
 };
-
-export default Image;

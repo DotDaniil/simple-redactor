@@ -1,11 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import './sidebar.styles.css';
-import SidebarObject from "./sidebar-object/sidebar-object";
+import SidebarObject from "./sidebar-object";
 import { Props } from "./sidebar.types";
 
 export const Sidebar: React.FC<Props> = ({ setNextElement, setDropped }) => {
 
-    // console.log(mousePos);
     return (
         <div className="sidebar">
             <h2 className="sidebar-heading">Sidebar</h2>

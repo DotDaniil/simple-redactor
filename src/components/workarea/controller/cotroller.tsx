@@ -1,7 +1,7 @@
-import React, {useCallback, useEffect, useMemo, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { Props } from "./controller.types";
 import Textarea from "../textarea/textarea";
-import Image from  "../image/image";
+import Image from  "../image";
 import './controller.styles.css';
 import useWindowDimensions from "../../../utils/useWindowDimension";
 
@@ -13,13 +13,10 @@ export const Controller: React.FC<Props> = ({ elementType, dropped }) => {
     const isTablet = width < 1405 && width > 768;
     const isMobile = width < 768 && width < 1024;
 
-    console.log(width);
-
     useEffect(() => {
         if (elementType && dropped) {
             setAppState((prevState) => [...prevState, elementType])
         }
-        console.log('FINALISE', appState);
     },[dropped]);
 
     useEffect(() => {
@@ -32,7 +29,6 @@ export const Controller: React.FC<Props> = ({ elementType, dropped }) => {
             subarray[i] = appState.slice((i*size), (i*size) + size);
         }
         setDividedState(subarray)
-        console.log(dividedState, 'DEVIDED');
 
         if (appState.length > 16) {
             setAppState((prevState) => [...prevState.slice(0, 16)])
