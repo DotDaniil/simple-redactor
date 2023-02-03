@@ -3,14 +3,11 @@
 
     flex-direction: column;
 
-    /*width: 100vw;*/
-    /*height: 100vh;*/
-
     background-color: #e5e5f7;
     opacity: 0.3;
-    background-image:  repeating-linear-gradient(45deg, #a6a6a6 25%, transparent 25%, transparent 75%, #a6a6a6 75%, #a6a6a6), repeating-linear-gradient(45deg, #a6a6a6 25%, #e5e5f7 25%, #e5e5f7 75%, #a6a6a6 75%, #a6a6a6);
-    background-position: 0 0, 11px 11px;
-    background-size: 22px 22px;
+    /*background-image:  repeating-linear-gradient(45deg, #a6a6a6 25%, transparent 25%, transparent 75%, #a6a6a6 75%, #a6a6a6), repeating-linear-gradient(45deg, #a6a6a6 25%, #e5e5f7 25%, #e5e5f7 75%, #a6a6a6 75%, #a6a6a6);*/
+    /*background-position: 0 0, 11px 11px;*/
+    /*background-size: 22px 22px;*/
 
     z-index: -1;
 }
@@ -20,8 +17,6 @@
 
     margin: 30px;
     text-align: center;
-    /*top: 10vh;*/
-    /*left: calc(50vw - 114px);*/
 
     color: black;
 }

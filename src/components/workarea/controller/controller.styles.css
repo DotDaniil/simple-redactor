@@ -1,10 +1,6 @@
 .controller {
     display: flex;
     flex-direction: row;
-
-    /*height: 100%;*/
-    /*width: fit-content;*/
-    /*height: fit-content;*/
 }
 
 .column {
