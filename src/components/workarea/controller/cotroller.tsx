@@ -10,7 +10,7 @@ export const Controller: React.FC<Props> = ({ elementType, dropped }) => {
     const [appState, setAppState] = useState<string[]>([]);
     const [dividedState, setDividedState] = useState<string[][]>([[]]);
     const {width, height} = useWindowDimensions();
-    const isTablet = width < 1024 && width > 768;
+    const isTablet = width < 1405 && width > 768;
     const isMobile = width < 768 && width < 1024;
 
     console.log(width);
