@@ -1,4 +1,4 @@
-import React, {ChangeEvent, MouseEventHandler, useCallback, useEffect, useRef, useState} from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import './image.styles.css';
 
 
@@ -40,7 +40,7 @@ const Image = () => {
 
     return (
         <div className="image-container">
-            {preview ? <img alt="img" className="image" src={preview as string || undefined}/> : <input ref={fileInputRef} type="file" onChange={handleClick} />}
+            {preview ? <img alt="img" className="image" src={preview as string || undefined}/> : <input className="image-input" ref={fileInputRef} type="file" onChange={handleClick} />}
         </div>
     );
 };
